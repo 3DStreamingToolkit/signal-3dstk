@@ -18,8 +18,6 @@ This implementation is built on top of the following components:
 
 ## Getting started
 
-> The RESTful API remains largely unchanged from [webrtc-signal-http](https://github.com/bengreenier/webrtc-signal-http), but is fully documented in OpenAPI format ([raw](./swagger.yml) or [hosted](https://rebilly.github.io/ReDoc/?url=https://raw.githubusercontent.com/bengreenier/3dtoolkit-signal/master/swagger.yml)) for completeness.
-
 This implementation supports the following configuration settings, controlled via environment variables:
 
 + `PORT` - the port to start the server on
