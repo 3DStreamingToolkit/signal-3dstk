@@ -12,6 +12,7 @@ This implementation is built on top of the following components:
 + [express](https://github.com/expressjs/express)
 + [webrtc-signal-http](https://github.com/bengreenier/webrtc-signal-http)
 + [webrtc-signal-http-heartbeat](https://github.com/bengreenier/webrtc-signal-http-heartbeat)
++ [webrtc-signal-http-capacity](https://github.com/bengreenier/webrtc-signal-http-capacity)
 + [passport](https://github.com/jaredhanson/passport)
 + [passport-azure-ad](https://github.com/AzureAD/passport-azure-ad)
 
