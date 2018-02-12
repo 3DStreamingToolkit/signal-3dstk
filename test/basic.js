@@ -39,6 +39,38 @@ describe('3dtoolkit-signal', () => {
                 .expect(404, done)
         })
 
+        it('should support capacity', (done) => {
+            const app = appCreator({
+                capacityEnabled: true,
+                heartbeatEnabled: false,
+                authEnabled: false,
+                loggingEnabled: false
+            })
+
+            // manually add a peer so capacity can work
+            const peerId = app.peerList.addPeer('testPeer', {})
+
+            request(app)
+                .put(`/capacity?peer_id=${peerId}&value=10`)
+                .expect(200, done)
+        })
+
+        it('should support no capacity', (done) => {
+            const app = appCreator({
+                capacityEnabled: false,
+                heartbeatEnabled: false,
+                authEnabled: false,
+                loggingEnabled: false
+            })
+
+            // manually add a peer so capacity can work
+            const peerId = app.peerList.addPeer('testPeer', {})
+
+            request(app)
+                .put(`/capacity?peer_id=${peerId}&value=1`)
+                .expect(404, done)
+        })
+
         it('should require auth if enabled', (done) => {
             const app = appCreator({
                 heartbeatEnabled: false,
