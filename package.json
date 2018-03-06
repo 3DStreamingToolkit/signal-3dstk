@@ -19,13 +19,13 @@
   "dependencies": {
     "express-bunyan-logger": "^1.3.2",
     "passport": "^0.4.0",
-    "passport-azure-ad": "^3.0.10",
-    "webrtc-signal-http": "^1.1.1",
+    "passport-azure-ad": "^3.0.12",
+    "webrtc-signal-http": "^1.2.0",
     "webrtc-signal-http-capacity": "^1.1.0",
     "webrtc-signal-http-heartbeat": "^1.0.0"
   },
   "devDependencies": {
-    "mocha": "^5.0.0",
+    "mocha": "^5.0.2",
     "supertest": "^3.0.0"
   }
 }
