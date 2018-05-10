@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/bengreenier/3dtoolkit-signal.svg?branch=master)](https://travis-ci.org/bengreenier/3dtoolkit-signal)
 
+[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
+
 [3dtoolkit](https://github.com/catalystcode/3dtoolkit) webrtc signal implementation, using `http` :satellite:
 
 
