@@ -47,6 +47,11 @@ Our API is simply those APIs combined, with this added requirement:
 
 All requests must have a valid `Authorization: Bearer <token>` header if `WEBRTC_AUTH_ENABLED` is `true`. See [the AzureAD docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-protocols-oauth-code) to learn how to acquire one.
 
+## Docker
+
+Building: `docker build -t 3dtoolkit-signal .`
+Running: `docker run --rm -it -p 3000:3000 3dtoolkit-signal`
+
 ## License
 
 MIT
