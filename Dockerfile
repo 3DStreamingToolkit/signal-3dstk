@@ -2,8 +2,7 @@ FROM node:carbon
 
 RUN npm i npm@latest -g
 
-WORKDIR /usr/src/app
-RUN git clone https://github.com/bengreenier/3dtoolkit-signal.git signal
+ADD . /usr/src/app/signal
 
 WORKDIR /usr/src/app/signal
 RUN npm install --only=production
