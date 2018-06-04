@@ -71,6 +71,39 @@ describe('3dtoolkit-signal', () => {
                 .expect(404, done)
         })
 
+        it('should support peer recognition', () => {
+            const app = appCreator({
+                capacityEnabled: false,
+                heartbeatEnabled: false,
+                authEnabled: false,
+                loggingEnabled: false,
+                recognitionEnabled: true
+            })
+
+            const clientId1 = app.peerList.addPeer('client1', {})
+            const clientId2 = app.peerList.addPeer('client2', {})
+            const clientId3 = app.peerList.addPeer('client3', {})
+            const serverId1 = app.peerList.addPeer('server1', {})
+            const serverId2 = app.peerList.addPeer('server2', {})
+            const serverId3 = app.peerList.addPeer('server3', {})
+
+            //Make sure only 3 peers (and the empty string) are returned
+            //This is true for each client
+            assert.equal(app.peerList.dataFor(clientId1).split("\n").length, 4)
+            assert.equal(app.peerList.dataFor(clientId2).split("\n").length, 4)
+            assert.equal(app.peerList.dataFor(clientId3).split("\n").length, 4)
+
+            //Make sure these are the same lists being returned 
+            assert.equal(app.peerList.dataFor(clientId1), app.peerList.dataFor(clientId2))
+            assert.equal(app.peerList.dataFor(clientId1), app.peerList.dataFor(clientId3))
+            
+            //Make sure there are no clients in the returned peer list
+            assert(!app.peerList.dataFor(clientId1).includes("client"))
+
+        })
+
+        
+
         it('should require auth if enabled', (done) => {
             const app = appCreator({
                 heartbeatEnabled: false,

@@ -13,7 +13,8 @@ const app = appCreator({
     authB2cPolicyName: process.env.WEBRTC_AUTH_B2C_POLICY_NAME,
     authAppId: process.env.WEBRTC_AUTH_APP_ID,
     authTenantId: process.env.WEBRTC_AUTH_TENANT_ID,
-    capacityEnabled: process.env.WEBRTC_CAPACITY_ENABLED
+    capacityEnabled: process.env.WEBRTC_CAPACITY_ENABLED,
+    recognitionEnabled: process.env.WEBRTC_RECOGNITION_ENABLED
 })
 
 app.listen(process.env.PORT || 3000)
