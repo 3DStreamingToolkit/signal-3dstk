@@ -99,9 +99,7 @@ describe('3dtoolkit-signal', () => {
             
             //Make sure there are no clients in the returned peer list
             assert(!app.peerList.dataFor(clientId1).includes("client"))
-
         })
-
         
 
         it('should require auth if enabled', (done) => {
