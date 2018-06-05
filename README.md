@@ -15,6 +15,7 @@ This implementation is built on top of the following components:
 + [webrtc-signal-http](https://github.com/bengreenier/webrtc-signal-http)
 + [webrtc-signal-http-heartbeat](https://github.com/bengreenier/webrtc-signal-http-heartbeat)
 + [webrtc-signal-http-capacity](https://github.com/bengreenier/webrtc-signal-http-capacity)
++ [webrtc-signal-http-peer-identification](https://github.com/KanishkT123/webrtc-signal-http-peer-identification)
 + [passport](https://github.com/jaredhanson/passport)
 + [passport-azure-ad](https://github.com/AzureAD/passport-azure-ad)
 
@@ -34,6 +35,7 @@ This implementation supports the following configuration settings, controlled vi
 + `WEBRTC_AUTH_APP_ID` - Azure AD application id. required if auth is enabled
 + `WEBRTC_AUTH_TENANT_ID` - Azure AD tenant id. required if auth is enabled
 + `WEBRTC_CAPACITY_ENABLED` - boolean flag indicating if [webrtc-signal-http-capacity](https://github.com/bengreenier/webrtc-signal-http-capacity) should be enabled
++ `WEBRTC_RECOGNITION_ENABLED` - boolean flag indicating if [webrtc-signal-http-peer-identification](https://github.com/KanishkT123/webrtc-signal-http-peer-identification) should be enabled
 
 ## RESTful API
 
@@ -46,6 +48,11 @@ See:
 Our API is simply those APIs combined, with this added requirement:
 
 All requests must have a valid `Authorization: Bearer <token>` header if `WEBRTC_AUTH_ENABLED` is `true`. See [the AzureAD docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-protocols-oauth-code) to learn how to acquire one.
+
+## Docker
+
+Building: `docker build -t 3dtoolkit-signal .`
+Running: `docker run --rm -it -p 3000:3000 3dtoolkit-signal`
 
 ## License
 
