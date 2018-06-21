@@ -36,6 +36,8 @@ This implementation supports the following configuration settings, controlled vi
 + `WEBRTC_AUTH_TENANT_ID` - Azure AD tenant id. required if auth is enabled
 + `WEBRTC_CAPACITY_ENABLED` - boolean flag indicating if [webrtc-signal-http-capacity](https://github.com/bengreenier/webrtc-signal-http-capacity) should be enabled
 + `WEBRTC_RECOGNITION_ENABLED` - boolean flag indicating if [webrtc-signal-http-peer-identification](https://github.com/KanishkT123/webrtc-signal-http-peer-identification) should be enabled
++ `WEBRTC_PEERID_RESPECT_CAPACITY` - hands out peers such that capacity reported by the [webrtc-signal-http-capacity](https://github.com/bengreenier/webrtc-signal-http-capacity) plugin is respected
++ `WEBRTC_PEERID_PAIRING` - pairs clients to servers. if `WEBRTC_PEERID_RESPECT_CAPACITY` is set, capacity will be considered, otherwise 1:1 pairings will be used
 
 ## RESTful API
 
