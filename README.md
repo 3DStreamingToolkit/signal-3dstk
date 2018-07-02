@@ -1,13 +1,13 @@
-# 3dtoolkit-signal
+# signal-3dstk
 
-[![Build Status](https://travis-ci.org/bengreenier/3dtoolkit-signal.svg?branch=master)](https://travis-ci.org/bengreenier/3dtoolkit-signal)
+[![Build Status](https://travis-ci.org/bengreenier/3dtoolkit-signal.svg?branch=master)](https://travis-ci.org/bengreenier/signal-3dstk)
 
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 
-[3dtoolkit](https://github.com/catalystcode/3dtoolkit) webrtc signal implementation, using `http` :satellite:
+[3DStreamingToolkit](https://github.com/catalystcode/3dstreamingtoolkit) webrtc signal implementation, using `http` :satellite:
 
 
-This enables webrtc peer communication across the [3dtoolkit](https://github.com/catalystcode/3dtoolkit) server/client stack. This means that it can be used to faciliate communication between N clients, N peers, and/or both. It uses `http` as a protocol, and can run over `https` as well. Further, authentication can be toggled on, requiring clients to provide valid [OAuth 2.0](https://oauth.net/2/) tokens in order to successfully access the service.
+This enables webrtc peer communication across the [3DStreamingToolkit](https://github.com/catalystcode/3dstreamingtoolkit) server/client stack. This means that it can be used to faciliate communication between N clients, N peers, and/or both. It uses `http` as a protocol, and can run over `https` as well. Further, authentication can be toggled on, requiring clients to provide valid [OAuth 2.0](https://oauth.net/2/) tokens in order to successfully access the service.
 
 This implementation is built on top of the following components:
 
