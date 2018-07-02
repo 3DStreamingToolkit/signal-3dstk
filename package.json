@@ -1,7 +1,7 @@
 {
-  "name": "3dtoolkit-signal",
-  "version": "2.1.0",
-  "description": "3dtoolkit webrtc signal implementation, using http",
+  "name": "signal-3dstk",
+  "version": "1.0.0",
+  "description": "3dstreamingtoolkit webrtc signal implementation, using http",
   "main": "index.js",
   "bin": {
     "3dtoolkit-signal": "./index.js"
