@@ -1,6 +1,6 @@
 # signal-3dstk
 
-[![Build Status](https://travis-ci.org/3dstreamingtoolkit/signal-3dstk.svg?branch=master)](https://travis-ci.org/3dstreamingtoolkit/signal-3dstk)
+[![Build Status](https://travis-ci.org/3DStreamingToolkit/signal-3dstk.svg?branch=master)](https://travis-ci.org/3DStreamingToolkit/signal-3dstk)
 
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 
