@@ -16,6 +16,7 @@ This implementation is built on top of the following components:
 + [webrtc-signal-http-heartbeat](https://github.com/bengreenier/webrtc-signal-http-heartbeat)
 + [webrtc-signal-http-capacity](https://github.com/bengreenier/webrtc-signal-http-capacity)
 + [webrtc-signal-http-peer-identification](https://github.com/KanishkT123/webrtc-signal-http-peer-identification)
++ [webrtc-signal-http-publisher](https://github.com/bengreenier/webrtc-signal-http-publisher)
 + [passport](https://github.com/jaredhanson/passport)
 + [passport-azure-ad](https://github.com/AzureAD/passport-azure-ad)
 
@@ -38,6 +39,8 @@ This implementation supports the following configuration settings, controlled vi
 + `WEBRTC_RECOGNITION_ENABLED` - boolean flag indicating if [webrtc-signal-http-peer-identification](https://github.com/KanishkT123/webrtc-signal-http-peer-identification) should be enabled
 + `WEBRTC_PEERID_RESPECT_CAPACITY` - hands out peers such that capacity reported by the [webrtc-signal-http-capacity](https://github.com/bengreenier/webrtc-signal-http-capacity) plugin is respected
 + `WEBRTC_PEERID_PAIRING` - pairs clients to servers. if `WEBRTC_PEERID_RESPECT_CAPACITY` is set, capacity will be considered, otherwise 1:1 pairings will be used
++ `WEBRTC_PUBLISH_STATE` - boolean flag indicating if [webrtc-signal-http-publisher](https://github.com/bengreenier/webrtc-signal-http-publisher) should be enabled
++ `WEBRTC_PUBLISH_URI` - uri to publish state of the world as-per [webrtc-signal-http-publisher](https://github.com/bengreenier/webrtc-signal-http-publisher)
 
 ## RESTful API
 

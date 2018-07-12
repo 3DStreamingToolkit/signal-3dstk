@@ -4,6 +4,22 @@ const appCreator = require('../lib')
 
 describe('3dtoolkit-signal', () => {
     describe('http', () => {
+        it('should support publisher', (done) => {
+            const app = appCreator({
+                heartbeatEnabled: false,
+                authEnabled: false,
+                loggingEnabled: false,
+                publishState: true
+            })
+
+            process.env.WEBRTC_PUBLISH_URI = "http://example.com"
+
+            app._publisher.on('update', () => {
+                process.env.WEBRTC_PUBLISH_URI = null
+                done()
+            })
+            app.peerList.emit('addPeer:post', {})
+        })
         it('should support heartbeat', (done) => {
             const app = appCreator({
                 heartbeatEnabled: true,
