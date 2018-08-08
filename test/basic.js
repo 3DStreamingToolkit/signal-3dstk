@@ -28,7 +28,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', {})
+            const peerId = app.peerList.addPeer('testPeer', {}, {})
 
             request(app)
                 .get(`/heartbeat?peer_id=${peerId}`)
@@ -48,7 +48,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', {})
+            const peerId = app.peerList.addPeer('testPeer', {}, {})
 
             request(app)
                 .get(`/heartbeat?peer_id=${peerId}`)
@@ -64,7 +64,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so capacity can work
-            const peerId = app.peerList.addPeer('testPeer', {})
+            const peerId = app.peerList.addPeer('testPeer', {}, {})
 
             request(app)
                 .put(`/capacity?peer_id=${peerId}&value=10`)
@@ -80,7 +80,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so capacity can work
-            const peerId = app.peerList.addPeer('testPeer', {})
+            const peerId = app.peerList.addPeer('testPeer', {}, {})
 
             request(app)
                 .put(`/capacity?peer_id=${peerId}&value=1`)
@@ -96,12 +96,12 @@ describe('3dtoolkit-signal', () => {
                 recognitionEnabled: true
             })
 
-            const clientId1 = app.peerList.addPeer('client1', {})
-            const clientId2 = app.peerList.addPeer('client2', {})
-            const clientId3 = app.peerList.addPeer('client3', {})
-            const serverId1 = app.peerList.addPeer('server1', {})
-            const serverId2 = app.peerList.addPeer('server2', {})
-            const serverId3 = app.peerList.addPeer('server3', {})
+            const clientId1 = app.peerList.addPeer('client1', {}, {})
+            const clientId2 = app.peerList.addPeer('client2', {}, {})
+            const clientId3 = app.peerList.addPeer('client3', {}, {})
+            const serverId1 = app.peerList.addPeer('server1', {}, {})
+            const serverId2 = app.peerList.addPeer('server2', {}, {})
+            const serverId3 = app.peerList.addPeer('server3', {}, {})
 
             //Make sure only 3 peers (and the empty string) are returned
             //This is true for each client
@@ -131,7 +131,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', {})
+            const peerId = app.peerList.addPeer('testPeer', {}, {})
 
             // expected to fail, which will generated passport-azure-ad logging messages
             request(app)
