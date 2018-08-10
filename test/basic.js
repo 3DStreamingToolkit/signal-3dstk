@@ -116,7 +116,6 @@ describe('3dtoolkit-signal', () => {
             //Make sure there are no clients in the returned peer list
             assert(!app.peerList.dataFor(clientId1).includes("client"))
         })
-        
 
         it('should require auth if enabled', (done) => {
             const app = appCreator({
@@ -137,6 +136,66 @@ describe('3dtoolkit-signal', () => {
             request(app)
                 .get('/sign_in?peer_name=testName')
                 .expect(401, done)
+        })
+
+        it('should not use x-forwarded-for by default', (done) => {
+            const app = appCreator({
+                loggingEnabled: false,
+                trustProxy: false
+            })
+
+            request(app)
+                .get('/sign_in?peer_name=testName')
+                .set('x-forwarded-for', '10.01.10.01')
+                .expect(200, () => {
+                    assert.notEqual(app.peerList.getPeer(1).ip, '10.01.10.01')
+                    done()
+                })
+        })
+
+        it('should respect x-forwarded-for if told to (v4)', (done) => {
+            const app = appCreator({
+                loggingEnabled: false,
+                trustProxy: true
+            })
+
+            request(app)
+                .get('/sign_in?peer_name=testName')
+                .set('x-forwarded-for', '10.01.10.01')
+                .expect(200, () => {
+                    assert.equal(app.peerList.getPeer(1).ip, '10.01.10.01')
+                    done()
+                })
+        })
+
+        it('should respect x-forwarded-for if told to (v4, port)', (done) => {
+            const app = appCreator({
+                loggingEnabled: false,
+                trustProxy: true
+            })
+
+            request(app)
+                .get('/sign_in?peer_name=testName')
+                .set('x-forwarded-for', '10.01.10.01:1010')
+                .expect(200, () => {
+                    assert.equal(app.peerList.getPeer(1).ip, '10.01.10.01')
+                    done()
+                })
+        })
+
+        it('should respect x-forwarded-for if told to (v6)', (done) => {
+            const app = appCreator({
+                loggingEnabled: false,
+                trustProxy: true
+            })
+
+            request(app)
+                .get('/sign_in?peer_name=testName')
+                .set('x-forwarded-for', '::2')
+                .expect(200, () => {
+                    assert.equal(app.peerList.getPeer(1).ip, '::2')
+                    done()
+                })
         })
     })
 })
