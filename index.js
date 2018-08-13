@@ -15,7 +15,8 @@ const app = appCreator({
     authTenantId: process.env.WEBRTC_AUTH_TENANT_ID,
     capacityEnabled: process.env.WEBRTC_CAPACITY_ENABLED,
     recognitionEnabled: process.env.WEBRTC_RECOGNITION_ENABLED,
-    publishState: process.env.WEBRTC_PUBLISH_STATE
+    publishState: process.env.WEBRTC_PUBLISH_STATE,
+    trustProxy: process.env.WEBRTC_TRUST_PROXY
 })
 
 app.listen(process.env.PORT || 3000)

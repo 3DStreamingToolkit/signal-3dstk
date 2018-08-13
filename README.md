@@ -41,6 +41,7 @@ This implementation supports the following configuration settings, controlled vi
 + `WEBRTC_PEERID_PAIRING` - pairs clients to servers. if `WEBRTC_PEERID_RESPECT_CAPACITY` is set, capacity will be considered, otherwise 1:1 pairings will be used
 + `WEBRTC_PUBLISH_STATE` - boolean flag indicating if [webrtc-signal-http-publisher](https://github.com/bengreenier/webrtc-signal-http-publisher) should be enabled
 + `WEBRTC_PUBLISH_URI` - uri to publish state of the world as-per [webrtc-signal-http-publisher](https://github.com/bengreenier/webrtc-signal-http-publisher)
++ `WEBRTC_TRUST_PROXY` - boolean flag indicating that the proxy should be trusted, and the 'x-forwarded-for' header should be used to discover ip. If you need ip data, and are on Azure, you need this.
 
 ## RESTful API
 

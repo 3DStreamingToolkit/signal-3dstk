@@ -28,7 +28,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', {})
+            const peerId = app.peerList.addPeer('testPeer', {}, {})
 
             request(app)
                 .get(`/heartbeat?peer_id=${peerId}`)
@@ -48,7 +48,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', {})
+            const peerId = app.peerList.addPeer('testPeer', {}, {})
 
             request(app)
                 .get(`/heartbeat?peer_id=${peerId}`)
@@ -64,7 +64,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so capacity can work
-            const peerId = app.peerList.addPeer('testPeer', {})
+            const peerId = app.peerList.addPeer('testPeer', {}, {})
 
             request(app)
                 .put(`/capacity?peer_id=${peerId}&value=10`)
@@ -80,7 +80,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so capacity can work
-            const peerId = app.peerList.addPeer('testPeer', {})
+            const peerId = app.peerList.addPeer('testPeer', {}, {})
 
             request(app)
                 .put(`/capacity?peer_id=${peerId}&value=1`)
@@ -96,12 +96,12 @@ describe('3dtoolkit-signal', () => {
                 recognitionEnabled: true
             })
 
-            const clientId1 = app.peerList.addPeer('client1', {})
-            const clientId2 = app.peerList.addPeer('client2', {})
-            const clientId3 = app.peerList.addPeer('client3', {})
-            const serverId1 = app.peerList.addPeer('server1', {})
-            const serverId2 = app.peerList.addPeer('server2', {})
-            const serverId3 = app.peerList.addPeer('server3', {})
+            const clientId1 = app.peerList.addPeer('client1', {}, {})
+            const clientId2 = app.peerList.addPeer('client2', {}, {})
+            const clientId3 = app.peerList.addPeer('client3', {}, {})
+            const serverId1 = app.peerList.addPeer('server1', {}, {})
+            const serverId2 = app.peerList.addPeer('server2', {}, {})
+            const serverId3 = app.peerList.addPeer('server3', {}, {})
 
             //Make sure only 3 peers (and the empty string) are returned
             //This is true for each client
@@ -116,7 +116,6 @@ describe('3dtoolkit-signal', () => {
             //Make sure there are no clients in the returned peer list
             assert(!app.peerList.dataFor(clientId1).includes("client"))
         })
-        
 
         it('should require auth if enabled', (done) => {
             const app = appCreator({
@@ -131,12 +130,72 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', {})
+            const peerId = app.peerList.addPeer('testPeer', {}, {})
 
             // expected to fail, which will generated passport-azure-ad logging messages
             request(app)
                 .get('/sign_in?peer_name=testName')
                 .expect(401, done)
+        })
+
+        it('should not use x-forwarded-for by default', (done) => {
+            const app = appCreator({
+                loggingEnabled: false,
+                trustProxy: false
+            })
+
+            request(app)
+                .get('/sign_in?peer_name=testName')
+                .set('x-forwarded-for', '10.01.10.01')
+                .expect(200, () => {
+                    assert.notEqual(app.peerList.getPeer(1).ip, '10.01.10.01')
+                    done()
+                })
+        })
+
+        it('should respect x-forwarded-for if told to (v4)', (done) => {
+            const app = appCreator({
+                loggingEnabled: false,
+                trustProxy: true
+            })
+
+            request(app)
+                .get('/sign_in?peer_name=testName')
+                .set('x-forwarded-for', '10.01.10.01')
+                .expect(200, () => {
+                    assert.equal(app.peerList.getPeer(1).ip, '10.01.10.01')
+                    done()
+                })
+        })
+
+        it('should respect x-forwarded-for if told to (v4, port)', (done) => {
+            const app = appCreator({
+                loggingEnabled: false,
+                trustProxy: true
+            })
+
+            request(app)
+                .get('/sign_in?peer_name=testName')
+                .set('x-forwarded-for', '10.01.10.01:1010')
+                .expect(200, () => {
+                    assert.equal(app.peerList.getPeer(1).ip, '10.01.10.01')
+                    done()
+                })
+        })
+
+        it('should respect x-forwarded-for if told to (v6)', (done) => {
+            const app = appCreator({
+                loggingEnabled: false,
+                trustProxy: true
+            })
+
+            request(app)
+                .get('/sign_in?peer_name=testName')
+                .set('x-forwarded-for', '::2')
+                .expect(200, () => {
+                    assert.equal(app.peerList.getPeer(1).ip, '::2')
+                    done()
+                })
         })
     })
 })
