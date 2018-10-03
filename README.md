@@ -25,6 +25,7 @@ This implementation is built on top of the following components:
 This implementation supports the following configuration settings, controlled via environment variables:
 
 + `PORT` - the port to start the server on
++ `WEBRTC_CORS` - boolean flag indicating if cors should allow wildcard access, or no cors headers. By default, no cors headers are present
 + `WEBRTC_SIGNAL_LOGGING` - boolean flag indicating if [bunyan](https://github.com/trentm/node-bunyan) logging should be enabled
 + `WEBRTC_HEARTBEAT_ENABLED` - boolean flag indicating if [webrtc-signal-http-heartbeat](https://github.com/bengreenier/webrtc-signal-http-heartbeat) should be enabled
 + `WEBRTC_HEARTBEAT_MS` - (requires heartbeat) number of `ms` after which a client is marked as stale and removed if they have not issued a `GET /heartbeat`
