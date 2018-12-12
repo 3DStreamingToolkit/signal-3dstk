@@ -4,7 +4,7 @@
   "description": "3dstreamingtoolkit webrtc signal implementation, using http",
   "main": "index.js",
   "engine": {
-    "node": "10.14.x"
+    "node": "10.14.1"
   },
   "bin": {
     "3dtoolkit-signal": "./index.js"
