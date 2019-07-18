@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "declaration": true,
+      "target": "es6",
+      "noImplicitAny": true,
+      "sourceMap": true,
+      "outDir": "dist",
+      "baseUrl": ".",
+      "paths": {
+        "*": ["node_modules/*"]
+      },
+      "resolveJsonModule": true
+    },
+    "include": [
+      "lib/**/*",
+      "index.ts"
+    ],
+    "exclude": [
+      "test/**/*"
+    ]
+  }
