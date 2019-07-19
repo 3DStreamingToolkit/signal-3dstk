@@ -93,7 +93,7 @@ module.exports = (opts: ISignalerOpts) => {
         })
 
         // use the heartbeat peerList instead
-        peerList = heartbeatRouter.peerList
+        peerList = heartbeatRouter.peerList as PeerList
 
         app.use(heartbeatRouter)
     }

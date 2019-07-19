@@ -59,7 +59,13 @@ All requests must have a valid `Authorization: Bearer <token>` header if `WEBRTC
 ## Docker
 
 Building: `docker build -t 3dtoolkit-signal .`
+
 Running: `docker run --rm -it -p 3000:3000 3dtoolkit-signal`
+
+## Running Locally
+Building: `npm run  build`
+
+Running: `npm run start`
 
 ## License
 

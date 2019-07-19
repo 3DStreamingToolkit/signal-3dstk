@@ -21,10 +21,6 @@ export interface ISignalerOpts {
     publishState: boolean
 }
 
-export interface IPeerList { 
-
-}
-
 export interface IPeerBearerStrategyOpts extends IBearerStrategyOption {
     passReqToCallback: boolean;
 }
