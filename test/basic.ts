@@ -67,12 +67,12 @@ describe('3dtoolkit-signal', () => {
             });
 
             // manually add a peer so capacity can work
-            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
+            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq);
 
             request(app)
                 .put(`/capacity?peer_id=${peerId}&value=10`)
                 .expect(200, done)
-        })
+        });
 
         it('should support no capacity', (done) => {
             const app = appCreator({
@@ -80,14 +80,14 @@ describe('3dtoolkit-signal', () => {
                 heartbeatEnabled: false,
                 authEnabled: false,
                 loggingEnabled: false
-            })
+            });
 
             // manually add a peer so capacity can work
-            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
+            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq);
 
             request(app)
                 .put(`/capacity?peer_id=${peerId}&value=1`)
-                .expect(404, done)
+                .expect(404, done);
         })
 
         it('should support peer recognition', () => {
@@ -97,27 +97,27 @@ describe('3dtoolkit-signal', () => {
                 authEnabled: false,
                 loggingEnabled: false,
                 recognitionEnabled: true
-            })
+            });
 
-            const clientId1 = app.peerList.addPeer('client1', emptyRes, emptyReq)
-            const clientId2 = app.peerList.addPeer('client2', emptyRes, emptyReq)
-            const clientId3 = app.peerList.addPeer('client3', emptyRes, emptyReq)
-            const serverId1 = app.peerList.addPeer('server1', emptyRes, emptyReq)
-            const serverId2 = app.peerList.addPeer('server2', emptyRes, emptyReq)
-            const serverId3 = app.peerList.addPeer('server3', emptyRes, emptyReq)
+            const clientId1 = app.peerList.addPeer('client1', emptyRes, emptyReq);
+            const clientId2 = app.peerList.addPeer('client2', emptyRes, emptyReq);
+            const clientId3 = app.peerList.addPeer('client3', emptyRes, emptyReq);
+            const serverId1 = app.peerList.addPeer('server1', emptyRes, emptyReq);
+            const serverId2 = app.peerList.addPeer('server2', emptyRes, emptyReq);
+            const serverId3 = app.peerList.addPeer('server3', emptyRes, emptyReq);
 
             //Make sure only 3 peers (and the empty string) are returned
             //This is true for each client
-            assert.equal(app.peerList.dataFor(clientId1).split("\n").length, 4)
-            assert.equal(app.peerList.dataFor(clientId2).split("\n").length, 4)
-            assert.equal(app.peerList.dataFor(clientId3).split("\n").length, 4)
+            assert.equal(app.peerList.dataFor(clientId1).split("\n").length, 4);
+            assert.equal(app.peerList.dataFor(clientId2).split("\n").length, 4);
+            assert.equal(app.peerList.dataFor(clientId3).split("\n").length, 4);
 
             //Make sure these are the same lists being returned 
-            assert.equal(app.peerList.dataFor(clientId1), app.peerList.dataFor(clientId2))
-            assert.equal(app.peerList.dataFor(clientId1), app.peerList.dataFor(clientId3))
+            assert.equal(app.peerList.dataFor(clientId1), app.peerList.dataFor(clientId2));
+            assert.equal(app.peerList.dataFor(clientId1), app.peerList.dataFor(clientId3));
             
             //Make sure there are no clients in the returned peer list
-            assert(!app.peerList.dataFor(clientId1).includes("client"))
+            assert(!app.peerList.dataFor(clientId1).includes("client"));
         })
 
         it('should require auth if enabled', (done) => {
@@ -130,52 +130,52 @@ describe('3dtoolkit-signal', () => {
                 authAppId: 'testId',
                 authTenantId: 'testId',
                 loggingEnabled: false
-            })
+            });
 
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
+            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq);
 
             // expected to fail, which will generated passport-azure-ad logging messages
             request(app)
                 .get('/sign_in?peer_name=testName')
-                .expect(401, done)
+                .expect(401, done);
         })
 
         it('should not use x-forwarded-for by default', (done) => {
             const app = appCreator({
                 loggingEnabled: false,
                 trustProxy: false
-            })
+            });
 
             request(app)
                 .get('/sign_in?peer_name=testName')
                 .set('x-forwarded-for', '10.01.10.01')
                 .expect(200, () => {
-                    assert.notEqual(app.peerList.getPeer(1).ip, '10.01.10.01')
-                    done()
-                })
-        })
+                    assert.notEqual(app.peerList.getPeer(1).ip, '10.01.10.01');
+                    done();
+                });
+        });
 
         it('should respect x-forwarded-for if told to (v4)', (done) => {
             const app = appCreator({
                 loggingEnabled: false,
                 trustProxy: true
-            })
+            });
 
             request(app)
                 .get('/sign_in?peer_name=testName')
                 .set('x-forwarded-for', '10.01.10.01')
                 .expect(200, () => {
-                    assert.equal(app.peerList.getPeer(1).ip, '10.01.10.01')
-                    done()
-                })
-        })
+                    assert.equal(app.peerList.getPeer(1).ip, '10.01.10.01');
+                    done();
+                });
+        });
 
         it('should respect x-forwarded-for if told to (v4, port)', (done) => {
             const app = appCreator({
                 loggingEnabled: false,
                 trustProxy: true
-            })
+            });
 
             request(app)
                 .get('/sign_in?peer_name=testName')
