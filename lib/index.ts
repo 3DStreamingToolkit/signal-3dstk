@@ -12,12 +12,12 @@ const Publisher = require("webrtc-signal-http-publisher");
 const optIsFalsey = (opt: string | boolean) => {
     return !opt ||
         opt === 'false' ||
-        (typeof(opt) === 'string' && opt.toLowerCase() === 'false') 
+        ( typeof(opt) === 'string' && opt.toLowerCase() === 'false') 
 }
 
 module.exports = (opts: ISignalerOpts) => {
-    const app = express() as IExpressApp; 
-    let peerList = new PeerList() as PeerList; 
+    const app = express() as IExpressApp
+    let peerList = new PeerList()
 
     if (!optIsFalsey(opts.trustProxy)) {
         app.set('trust proxy', true)
@@ -93,7 +93,7 @@ module.exports = (opts: ISignalerOpts) => {
         })
 
         // use the heartbeat peerList instead
-        peerList = heartbeatRouter.peerList as PeerList
+        peerList = heartbeatRouter.peerList
 
         app.use(heartbeatRouter)
     }
@@ -123,7 +123,8 @@ module.exports = (opts: ISignalerOpts) => {
     }
 
     // configure the webrtc-signal-http router
-    const signalRouter = signalRouterCreator({...opts,
+    const signalRouter = signalRouterCreator({
+        ...opts,
         // we use a predefined peerList in case we need to support heartbeats
         peerList: peerList,
 
