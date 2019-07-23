@@ -1,6 +1,10 @@
-const assert = require('assert')
-const request = require('supertest')
-const appCreator = require('../lib')
+import * as assert from "assert";
+import * as request from "supertest";
+import appCreator from "../lib"
+import { IPeerRequest, IPeerResponse } from "webrtc-signal-http-ts";
+
+const emptyRes = {} as IPeerResponse;
+const emptyReq = {} as IPeerRequest;
 
 describe('3dtoolkit-signal', () => {
     describe('http', () => {
@@ -25,19 +29,18 @@ describe('3dtoolkit-signal', () => {
                 heartbeatEnabled: true,
                 authEnabled: false,
                 loggingEnabled: false
-            })
-
+            }) as unknown as {peerList: {addPeer: any, cancelGc: any}}
+            
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', {}, {})
-
+            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
             request(app)
-                .get(`/heartbeat?peer_id=${peerId}`)
-                .expect(200)
-                .then(() => {
-                    // stop the gc so this test can exit cleanly
-                    app.peerList.cancelGc()
-                })
-                .then(done,done)
+            .get(`/heartbeat?peer_id=${peerId}`)
+            .expect(200)
+            .then(() => {
+                // stop the gc so this test can exit cleanly
+                app.peerList.cancelGc()
+            })
+            .then(done,done)
         })
 
         it('should support no heartbeat', (done) => {
@@ -48,7 +51,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', {}, {})
+            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
 
             request(app)
                 .get(`/heartbeat?peer_id=${peerId}`)
@@ -64,7 +67,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so capacity can work
-            const peerId = app.peerList.addPeer('testPeer', {}, {})
+            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
 
             request(app)
                 .put(`/capacity?peer_id=${peerId}&value=10`)
@@ -80,7 +83,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so capacity can work
-            const peerId = app.peerList.addPeer('testPeer', {}, {})
+            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
 
             request(app)
                 .put(`/capacity?peer_id=${peerId}&value=1`)
@@ -96,12 +99,12 @@ describe('3dtoolkit-signal', () => {
                 recognitionEnabled: true
             })
 
-            const clientId1 = app.peerList.addPeer('client1', {}, {})
-            const clientId2 = app.peerList.addPeer('client2', {}, {})
-            const clientId3 = app.peerList.addPeer('client3', {}, {})
-            const serverId1 = app.peerList.addPeer('server1', {}, {})
-            const serverId2 = app.peerList.addPeer('server2', {}, {})
-            const serverId3 = app.peerList.addPeer('server3', {}, {})
+            const clientId1 = app.peerList.addPeer('client1', emptyRes, emptyReq)
+            const clientId2 = app.peerList.addPeer('client2', emptyRes, emptyReq)
+            const clientId3 = app.peerList.addPeer('client3', emptyRes, emptyReq)
+            const serverId1 = app.peerList.addPeer('server1', emptyRes, emptyReq)
+            const serverId2 = app.peerList.addPeer('server2', emptyRes, emptyReq)
+            const serverId3 = app.peerList.addPeer('server3', emptyRes, emptyReq)
 
             //Make sure only 3 peers (and the empty string) are returned
             //This is true for each client
@@ -130,7 +133,7 @@ describe('3dtoolkit-signal', () => {
             })
 
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', {}, {})
+            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
 
             // expected to fail, which will generated passport-azure-ad logging messages
             request(app)

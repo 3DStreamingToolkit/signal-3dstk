@@ -31,6 +31,7 @@
     "webrtc-signal-http-ts": "^1.8.20"
   },
   "devDependencies": {
+    "@types/supertest": "^2.0.8",
     "typescript": "^3.5.3",
     "@types/mocha": "^5.2.7",
     "@types/passport-azure-ad": "^4.0.2",

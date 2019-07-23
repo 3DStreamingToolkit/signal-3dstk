@@ -3,19 +3,13 @@ import * as expressBunyan from "express-bunyan-logger";
 import * as passport from "passport";
 import { ITokenPayload, BearerStrategy, VerifyCallback, IBearerStrategyOption } from "passport-azure-ad";
 import { signalRouterCreator, IPeerRequest, PeerList } from "webrtc-signal-http-ts";
-import { ISignalerOpts, IPeerBearerStrategyOpts, IExpressApp } from "./modules";
-const heartbeatRouterCreator = require("webrtc-signal-http-heartbeat");
-const capacityRouterCreator = require("webrtc-signal-http-capacity");
-const recognitionRouterCreator = require("webrtc-signal-http-peer-identification");
-const Publisher = require("webrtc-signal-http-publisher");
+import { ISignalerOpts, IPeerBearerStrategyOpts, IExpressApp, optIsFalsey } from "./modules";
+import * as heartbeatRouterCreator from "webrtc-signal-http-heartbeat";
+import * as capacityRouterCreator from "webrtc-signal-http-capacity";
+import * as  recognitionRouterCreator from "webrtc-signal-http-peer-identification";
+import * as Publisher from "webrtc-signal-http-publisher";
 
-const optIsFalsey = (opt: string | boolean) => {
-    return !opt ||
-        opt === 'false' ||
-        ( typeof(opt) === 'string' && opt.toLowerCase() === 'false') 
-}
-
-module.exports = (opts: ISignalerOpts) => {
+export default function appCreator(opts: ISignalerOpts) {
     const app = express() as IExpressApp
     let peerList = new PeerList()
 

@@ -14,7 +14,8 @@
     },
     "include": [
       "lib/**/*",
-      "index.ts"
+      "index.ts",
+      "modules.d.ts",
     ],
     "exclude": [
       "test/**/*"
