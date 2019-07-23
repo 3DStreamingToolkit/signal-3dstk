@@ -14,33 +14,33 @@ describe('3dtoolkit-signal', () => {
                 authEnabled: false,
                 loggingEnabled: false,
                 publishState: true
-            })
+            });
 
-            process.env.WEBRTC_PUBLISH_URI = "http://example.com"
+            process.env.WEBRTC_PUBLISH_URI = "http://example.com";
 
             app._publisher.on('update', () => {
-                process.env.WEBRTC_PUBLISH_URI = null
-                done()
+                process.env.WEBRTC_PUBLISH_URI = null;
+                done();
             })
-            app.peerList.emit('addPeer:post', {})
+            app.peerList.emit('addPeer:post', {});
         })
         it('should support heartbeat', (done) => {
             const app = appCreator({
                 heartbeatEnabled: true,
                 authEnabled: false,
                 loggingEnabled: false
-            }) as unknown as {peerList: {addPeer: any, cancelGc: any}}
+            }) as unknown as {peerList: {addPeer: any, cancelGc: any}};
             
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
+            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq);
             request(app)
             .get(`/heartbeat?peer_id=${peerId}`)
             .expect(200)
             .then(() => {
                 // stop the gc so this test can exit cleanly
-                app.peerList.cancelGc()
+                app.peerList.cancelGc();
             })
-            .then(done,done)
+            .then(done,done);
         })
 
         it('should support no heartbeat', (done) => {
@@ -48,14 +48,14 @@ describe('3dtoolkit-signal', () => {
                 heartbeatEnabled: false,
                 authEnabled: false,
                 loggingEnabled: false
-            })
+            });
 
             // manually add a peer so heartbeat can work
-            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
+            const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq);
 
             request(app)
                 .get(`/heartbeat?peer_id=${peerId}`)
-                .expect(404, done)
+                .expect(404, done);
         })
 
         it('should support capacity', (done) => {
@@ -64,7 +64,7 @@ describe('3dtoolkit-signal', () => {
                 heartbeatEnabled: false,
                 authEnabled: false,
                 loggingEnabled: false
-            })
+            });
 
             // manually add a peer so capacity can work
             const peerId = app.peerList.addPeer('testPeer', emptyRes, emptyReq)
