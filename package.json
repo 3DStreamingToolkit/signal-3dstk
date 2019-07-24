@@ -12,6 +12,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "test": "ts-mocha test/**/*.ts",
+    "quick-start": "npm run build && npm run start",
     "build": "tsc -p .",
     "lint": "tslint -c tslint.json -p tsconfig.json"
   },
