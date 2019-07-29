@@ -31,7 +31,7 @@
     "webrtc-signal-http-heartbeat": "^1.0.0",
     "webrtc-signal-http-peer-identification": "^1.1.1",
     "webrtc-signal-http-publisher": "^1.1.0",
-    "webrtc-signal-http-ts": "^1.8.20"
+    "webrtc-signal-http-ts": "^1.8.23"
   },
   "devDependencies": {
     "tslint": "^5.18.0",

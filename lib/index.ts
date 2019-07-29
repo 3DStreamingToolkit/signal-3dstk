@@ -7,7 +7,7 @@ import * as heartbeatRouterCreator from "webrtc-signal-http-heartbeat";
 import * as  recognitionRouterCreator from "webrtc-signal-http-peer-identification";
 import * as Publisher from "webrtc-signal-http-publisher";
 import { IPeerRequest, PeerList, signalRouterCreator } from "webrtc-signal-http-ts";
-import { IExpressApp, IPeerBearerStrategyOpts, ISignalerOpts, optIsFalsey } from "./modules";
+import { IExpressApp, IPeerBearerStrategyOpts, ISignalerOpts, optIsFalsey } from "./utils";
 
 export default function appCreator(opts: ISignalerOpts) {
     const app = express() as IExpressApp;

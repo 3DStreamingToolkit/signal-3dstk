@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import appCreator from "./lib";
-import { optIsFalsey } from "./lib/modules";
+import { optIsFalsey } from "./lib/utils";
 
 const app = appCreator({
     authAppId: process.env.WEBRTC_AUTH_APP_ID,
