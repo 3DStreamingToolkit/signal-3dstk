@@ -1,7 +1,7 @@
 import { Express } from "express";
 import { IBearerStrategyOption } from "passport-azure-ad";
+import { PeerList } from "webrtc-signal-http";
 import { Publisher } from "webrtc-signal-http-publisher";
-import { PeerList } from "webrtc-signal-http-ts";
 
 export interface ISignalerOpts {
     port?: number;

@@ -2,11 +2,11 @@ import * as express from "express";
 import * as expressBunyan from "express-bunyan-logger";
 import * as passport from "passport";
 import { BearerStrategy, ITokenPayload, VerifyCallback } from "passport-azure-ad";
+import { IPeerRequest, PeerList, signalRouterCreator } from "webrtc-signal-http";
 import * as capacityRouterCreator from "webrtc-signal-http-capacity";
 import * as heartbeatRouterCreator from "webrtc-signal-http-heartbeat";
 import * as  recognitionRouterCreator from "webrtc-signal-http-peer-identification";
 import * as Publisher from "webrtc-signal-http-publisher";
-import { IPeerRequest, PeerList, signalRouterCreator } from "webrtc-signal-http-ts";
 import { IExpressApp, IPeerBearerStrategyOpts, ISignalerOpts, optIsFalsey } from "./utils";
 
 export default function appCreator(opts: ISignalerOpts) {

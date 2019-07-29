@@ -1,7 +1,7 @@
 import * as assert from "assert";
 import * as request from "supertest";
 import appCreator from "../lib"
-import { IPeerRequest, IPeerResponse } from "webrtc-signal-http-ts";
+import { IPeerRequest, IPeerResponse } from "webrtc-signal-http";
 
 const emptyRes = {} as IPeerResponse;
 const emptyReq = {} as IPeerRequest;
